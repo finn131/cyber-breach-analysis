@@ -1,0 +1,22 @@
+ About the columns in the dataset
+
+
+1.  Name : The name of the breached entity.
+2.  Title : A brief title or label for the breach.
+3.  Domain : The domain name associated with the breach (if available).
+4.  BreachDate : The date when the breach occurred.
+5.  AddedDate : The date when the breach was added to the database.
+6.  ModifiedDat : The date when the breach data was last modified.
+7.  PwnCount : The number of accounts impacted by the breach.
+8.  Description : A description of the breach.
+9.  LogoPath : The path to the logo associated with the breached entity.
+10. IsVerified : A boolean indicating whether the data breach has been verified.
+11. IsFabricated : A boolean indicating whether the data has been fabricated.
+12. IsSensitive : A boolean indicating whether the data is sensitive.
+13. IsRetired : A boolean indicating whether the data is retired.
+14. IsSpamList : A boolean indicating whether the data is part of a spam list.
+15. IsMalware : A boolean indicating whether the data includes malware.
+16. IsSubscriptionFree : A boolean indicating whether the service is subscription-free.
+
+ 
+
