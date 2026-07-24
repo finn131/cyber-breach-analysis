@@ -46,6 +46,8 @@ Dataset:
 * NumPy
 * Matplotlib
 * Seaborn
+* Streamlit
+* Plotly
 * Jupyter Notebook
 
 ---
@@ -180,12 +182,32 @@ python -m scripts.analysis
 python -m scripts.visualization
 ```
 
+Run the interactive dashboard:
+
+```bash
+streamlit run dashboard/app.py
+```
+
 Open notebooks sequentially:
 
 1. 01_data_understanding.ipynb
 2. 02_data_cleaning.ipynb
 3. 03_exploratory_analysis.ipynb
 4. 04_visualization.ipynb
+
+## Dashboard
+
+The Streamlit dashboard lives in `dashboard/` and uses only the processed dataset at
+`data/processed/cleaned_breach_data.csv`.
+
+Pages included:
+
+* `dashboard/app.py`
+* `dashboard/pages/1_Overview.py`
+* `dashboard/pages/2_Trends.py`
+* `dashboard/pages/3_Service_Analysis.py`
+* `dashboard/pages/4_Data_Explorer.py`
+* `dashboard/pages/5_Insights.py`
 
 ---
 
@@ -198,8 +220,6 @@ Open notebooks sequentially:
 
 # 🔮 Future Improvements
 
-* Interactive dashboard with Streamlit
-* Plotly visualizations
 * Automated ETL pipeline
 * Additional breach datasets integration
 * Threat Intelligence Dashboard
