@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -38,8 +36,20 @@ def _style_figure(fig: go.Figure, title: str | None = None, height: int = 420) -
         plot_bgcolor=PANEL,
         font=dict(color=TEXT, family="Inter, Segoe UI, Arial, sans-serif"),
         colorway=COLORWAY,
-        margin=dict(l=20, r=20, t=60, b=20),
+        margin=dict(l=20, r=20, t=74, b=20),
         showlegend=True,
+        hovermode="x unified",
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0.02,
+            bgcolor="rgba(0,0,0,0)",
+            font=dict(size=11),
+        ),
+        uniformtext_minsize=10,
+        uniformtext_mode="hide",
         title=dict(
             text=title,
             x=0.02,
@@ -94,6 +104,7 @@ def records_exposed_per_year_chart(df: pd.DataFrame) -> go.Figure:
         labels={"BreachYear": "Breach year", "RecordsExposed": "Records exposed"},
     )
     fig.update_traces(line=dict(color=SUCCESS, width=3), fillcolor="rgba(0, 200, 83, 0.25)")
+    fig.update_yaxes(tickformat=",")
     return _style_figure(fig, "Records Exposed per Year")
 
 
@@ -118,6 +129,7 @@ def top_largest_breaches_chart(df: pd.DataFrame, n: int = 10) -> go.Figure:
         hover_data=["Domain", "BreachDate", "VerifiedLabel"],
     )
     fig.update_layout(coloraxis_showscale=False)
+    fig.update_xaxes(tickformat=",")
     return _style_figure(fig, "Top 10 Largest Breaches", height=480)
 
 
@@ -147,6 +159,7 @@ def top_domains_chart(df: pd.DataFrame, n: int = 10) -> go.Figure:
         color_continuous_scale=["#002B36", ACCENT],
     )
     fig.update_layout(coloraxis_showscale=False)
+    fig.update_xaxes(tickformat=",")
     return _style_figure(fig, "Top Domains", height=420)
 
 
@@ -176,7 +189,7 @@ def trend_line_chart(df: pd.DataFrame) -> go.Figure:
         )
     )
     fig.update_xaxes(title_text="Breach year")
-    fig.update_yaxes(title_text="Count / records exposed")
+    fig.update_yaxes(title_text="Count / records exposed", tickformat=",")
     return _style_figure(fig, "Breach and Exposure Trends")
 
 
@@ -191,6 +204,7 @@ def trend_area_chart(df: pd.DataFrame) -> go.Figure:
         labels={"BreachYear": "Breach year", "RecordsExposed": "Records exposed"},
     )
     fig.update_traces(fillcolor="rgba(0, 229, 255, 0.25)", line=dict(color=ACCENT, width=3))
+    fig.update_yaxes(tickformat=",")
     return _style_figure(fig, "Records Exposed Area Trend")
 
 
@@ -220,7 +234,7 @@ def rolling_average_chart(df: pd.DataFrame, window: int = 3) -> go.Figure:
         )
     )
     fig.update_xaxes(title_text="Breach year")
-    fig.update_yaxes(title_text="Records exposed")
+    fig.update_yaxes(title_text="Records exposed", tickformat=",")
     return _style_figure(fig, f"{window}-Year Rolling Average")
 
 
@@ -265,6 +279,7 @@ def top_services_chart(df: pd.DataFrame, n: int = 20) -> go.Figure:
         color_continuous_scale=["#003B49", ACCENT],
     )
     fig.update_layout(coloraxis_showscale=False)
+    fig.update_xaxes(tickformat=",")
     return _style_figure(fig, "Top 20 Services by Exposure", height=640)
 
 
@@ -301,6 +316,7 @@ def exposure_histogram(df: pd.DataFrame) -> go.Figure:
         color_discrete_sequence=[ACCENT],
     )
     fig.update_xaxes(type="log")
+    fig.update_yaxes(tickformat=",")
     fig.update_traces(hovertemplate="Records exposed %{x:,}<br>Count %{y}<extra></extra>")
     return _style_figure(fig, "Exposure Distribution", height=420)
 
@@ -351,4 +367,3 @@ def exposure_box_plot(df: pd.DataFrame) -> go.Figure:
     )
     fig.update_layout(showlegend=False)
     return _style_figure(fig, "Exposure Box Plot", height=420)
-

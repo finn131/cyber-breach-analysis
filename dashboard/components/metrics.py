@@ -30,6 +30,7 @@ def _render_card(card: MetricCard) -> None:
     st.markdown(
         f"""
         <div class="metric-card" style="--accent:{card.accent}">
+            <div class="metric-accent"></div>
             <div class="metric-label">{card.label}</div>
             <div class="metric-value">{value_text}</div>
             {subtitle_html}
@@ -49,4 +50,3 @@ def render_metric_cards(cards: Sequence[MetricCard]) -> None:
     for column, card in zip(columns, cards, strict=False):
         with column:
             _render_card(card)
-

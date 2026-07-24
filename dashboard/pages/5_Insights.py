@@ -56,6 +56,16 @@ def main() -> None:
 
     st.markdown('<div class="section-title">Insights</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-subtitle">Core statistics, executive takeaways, and supporting distribution charts.</div>', unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div class="chip-row">
+            <span class="chip"><strong>Lens:</strong> executive summary</span>
+            <span class="chip"><strong>Signal:</strong> biggest risks</span>
+            <span class="chip"><strong>Support:</strong> distribution charts</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     render_metric_cards(
         [
@@ -67,7 +77,7 @@ def main() -> None:
         ]
     )
 
-    st.markdown("---")
+    st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
     left, right = st.columns(2)
     with left:
         st.plotly_chart(verified_status_pie_chart(filtered_df), use_container_width=True, config={"displayModeBar": True})
@@ -80,7 +90,7 @@ def main() -> None:
     with right2:
         st.plotly_chart(exposure_box_plot(filtered_df), use_container_width=True, config={"displayModeBar": True})
 
-    st.markdown("---")
+    st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
     insight_left, insight_mid, insight_right = st.columns(3)
     with insight_left:
         st.markdown(

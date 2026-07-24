@@ -47,6 +47,16 @@ def main() -> None:
 
     st.markdown('<div class="section-title">Overview</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-subtitle">Key breach metrics and the highest-impact views of the filtered dataset.</div>', unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div class="chip-row">
+            <span class="chip"><strong>Focus:</strong> breadth + scale</span>
+            <span class="chip"><strong>View:</strong> summary first</span>
+            <span class="chip"><strong>Charts:</strong> yearly trends + domains</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     render_metric_cards(
         [
@@ -59,7 +69,7 @@ def main() -> None:
         ]
     )
 
-    st.markdown("---")
+    st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     with c1:
         st.plotly_chart(breaches_per_year_chart(filtered_df), use_container_width=True, config={"displayModeBar": True})
@@ -72,7 +82,7 @@ def main() -> None:
     with c4:
         st.plotly_chart(top_domains_chart(filtered_df, n=10), use_container_width=True, config={"displayModeBar": True})
 
-    st.markdown("---")
+    st.markdown('<div class="soft-divider"></div>', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Recent Records</div>', unsafe_allow_html=True)
     recent = get_recent_records(filtered_df, n=12)
     st.dataframe(
